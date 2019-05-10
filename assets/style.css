@@ -1,0 +1,24 @@
+header {
+  font-family: 'Anton', 'Impact';
+  font-size: 4vh;
+  background: rgb(242,165,8);
+background: radial-gradient(circle, rgba(242,165,8,1) 0%, rgba(103,97,97,1) 38%, rgba(0,0,0,1) 100%);
+}
+.image-container {
+  position: relative;
+}
+
+.image-container > img {
+  background-size: contain;
+  width: 60%;
+  height: auto;
+}
+
+#logo {
+  height: 70%;
+  width: auto;
+}
+
+.text-rotate {
+  transform: rotate(-30deg);
+}
