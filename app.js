@@ -1,33 +1,35 @@
-let health = 100
-let multiplier = 1
-let name = 'Jack'
-let hits = 0
+let jack = {
+  name: 'Handsome Jack',
+  health: 100,
+  hits: 0,
+  multiplier: 1
+}
 
 function melee() {
-  health -= 2 * multiplier
-  hits++
+  jack.health -= 2 * jack.multiplier
+  jack.hits++
   update()
 }
 
 function shoot() {
-  health -= 5 * multiplier
-  hits++
+  jack.health -= 5 * jack.multiplier
+  jack.hits++
   update()
 }
 
 function slag() {
-  health -= 1
-  multiplier += .5
-  if (multiplier > 2.5) {
-    multiplier = 2.5
+  jack.health -= 1
+  jack.multiplier += .5
+  if (jack.multiplier > 2.5) {
+    jack.multiplier = 2.5
   }
-  hits++
+  jack.hits++
   update()
 }
 
 function update() {
-  document.getElementById("health").innerText = health
-  document.getElementById("hit-status").innerText = hits
+  document.getElementById("health").innerText = jack.health
+  document.getElementById("hit-status").innerText = jack.hits
 }
 
 update()
