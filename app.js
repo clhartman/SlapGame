@@ -6,34 +6,24 @@ let jack = {
   defense: []
 }
 
-/*let guardian = {
-  name: 'The Guardian',
-  modifier: 1,
-  description: 'You thought you were almost done?'
-}
-
-let shield = {
-  name: 'Jack\'s Shield Surveyor',
-  modifier: 1,
-  description: 'Even his shield has an attitude.'
-}*/
-
 let items = {
-  guardian: { name: 'The Guardian', modifier: 5, description: 'It\'s cute that you think you\'re the hero of this adventure, but you\'re not.' },
+  //guardian: { name: 'The Guardian', modifier: 50, description: 'It\'s cute that you think you\'re the hero of this adventure, but you\'re not.' },
   shield: { name: 'Jack\'s Shield Surveyor', modifier: 3, description: 'Even his shield has an attitude.' },
   doppelganger: { name: 'Digi-Jacks', modifier: 1, description: 'Can\'t touch this' }
 }
 
 function melee() {
-  jack.health -= 2 * jack.multiplier
+  let baseDamage = 2;
+  jack.health -= (baseDamage - addMods()) * jack.multiplier
   jack.hits++
-  update()
+  updateStats()
 }
 
 function shoot() {
-  jack.health -= 5 * jack.multiplier
+  let baseDamage = 5;
+  jack.health -= (baseDamage - addMods()) * jack.multiplier
   jack.hits++
-  update()
+  updateStats()
 }
 
 function slag() {
@@ -43,7 +33,7 @@ function slag() {
     jack.multiplier = 2.5
   }
   jack.hits++
-  update()
+  updateStats()
 }
 
 function goGuardian() {
@@ -54,77 +44,34 @@ function goGuardian() {
     jack.health = cappedBuff
   }
   else jack.health += 50
-  update()
+  updateStats()
   byeGuardian()
 }
 
 //Guardian button only works one time per round, and is then disabled. 
 function byeGuardian() {
-  document.getElementById("endGuardian").disabled = true
+  document.getElementById("guardianButton").disabled = true
 }
 
-function goShield() {
-  //jack.defense.push(items.shield)
-  let shieldMod = items.shield.modifier
-  if melee() {
-    jack.health +=
-  }
-  else if shoot() {
-    jack.health += 2
-  }
-  jackMods()
-}
-/*
-function goDoppelganger() {
-  let gangMod = jack.defense.push(items.doppelganger)
-  jackMods()
-}
-
-function jackMods() {
-  jack.health -= jack.defense.modifier
-}
-*/
-
-/*
-function giveGuardian() {
-  jack.defense.push(defense.guardian)
-  addMods();
-}
-
-function giveShield() {
-  jack.defense.push(defense.shield)
-  addMods()
-}
- 
-function giveDoppelganger() {
-  jack.defense.push(defense.doppelganger)
-  addMods()
-}
-
-function groupBy(defense, modifier) {
-  return defense.reduce(function (acc, obj) {
-    var key = obj[modifier];
-    if (!acc[key]) {
-      acc[key] = [];
-    }
-    acc[key].push(obj);
-    return acc;
-  }) { });
+function addItem(item) {
+  jack.defense.push(item)
 }
 
 function addMods() {
-  //determine which items are in the defense array, and then pull the value of each item's modifier and sum
-  let modsTotal = jack.defense.map(d => ({
-    
-  }))
- 
-  /*determine which modifiers are currently active and then total them and return the total so Jack's character can be aided
-  let modsTotal = jack.defense[].modifier
-  for (let i = 0; i < modsTotal; i + jack.defense[].modifier)
-  return (modsTotal)
-}*/
+  let buffs = 0
+  for (let i = 0; i < jack.defense.length; i++) {
+    buffs += jack.defense.pop().modifier
+  }
+  return buffs
+}
 
-function update() {
+function updateStats() {
+  if (jack.health <= 0) {
+    document.getElementById("shootButton").disabled = true
+    document.getElementById("meleeButton").disabled = true
+    document.getElementById("slagButton").disabled = true
+    jack.health = 0
+  }
   document.getElementById("health").innerText = jack.health
   document.getElementById("hit-status").innerText = jack.hits
 }
@@ -134,7 +81,11 @@ function respawn() {
   document.getElementById("health").innerText = jack.health
   jack.hits = 0
   document.getElementById("hit-status").innerText = jack.hits
-  document.getElementById("endGuardian").disabled = false
+  jack.multiplier = 1
+  document.getElementById("guardianButton").disabled = false
+  document.getElementById("shootButton").disabled = false
+  document.getElementById("meleeButton").disabled = false
+  document.getElementById("slagButton").disabled = false
 }
 
-update()
+updateStats()

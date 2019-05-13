@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Slap Game</title>
+  <title>SlapJack</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
     integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
@@ -45,19 +45,19 @@
               <h3>Hits: <span id="hit-status" class="hits"></span></h3>
             </span>
           </span>
-          <button class="btn btn-warning" onclick="goGuardian()" id="endGuardian">The Guardian</button>
-          <button class="btn btn-warning" onclick="goShield()">The Shield</button>
-          <button class="btn btn-warning" onclick="goDoppelganger()">The Doppelganger</button>
+          <button class="btn btn-warning" onclick="goGuardian()" id="guardianButton">The Guardian</button>
+          <button class="btn btn-warning" onclick="addItem(items.shield)">The Shield</button>
+          <button class="btn btn-warning" onclick="addItem(items.doppelganger)">The Doppelganger</button>
         </div>
       </div>
 
 
     </main>
     <footer class="row">
-      <div class="col-6">
-        <footer class="btn btn-warning" onclick="melee()">Melee</footer>
-        <footer class="btn btn-warning" onclick="shoot()">Shoot</footer>
-        <footer class="btn btn-warning" onclick="slag()">Slag</footer>
+      <div class="col-6 align-items-center">
+        <button class="btn btn-warning" onclick="melee()" id="meleeButton">Melee</button>
+        <button class="btn btn-warning" onclick="shoot()" id="shootButton">Shoot</button>
+        <button class="btn btn-warning" onclick="slag()" id="slagButton">Slag</button>
       </div>
       <div class="col-6">
         <button class="btn btn-info" onclick="respawn()">A New U</button>
