@@ -45,16 +45,24 @@
               <h3>Hits: <span id="hit-status" class="hits"></span></h3>
             </span>
           </span>
+          <button class="btn btn-warning" onclick="goGuardian()" id="endGuardian">The Guardian</button>
+          <button class="btn btn-warning" onclick="goShield()">The Shield</button>
+          <button class="btn btn-warning" onclick="goDoppelganger()">The Doppelganger</button>
         </div>
       </div>
 
 
     </main>
-
-    <footer class="btn btn-warning" onclick="melee()">Melee</footer>
-    <footer class="btn btn-warning" onclick="shoot()">Shoot</footer>
-    <footer class="btn btn-warning" onclick="slag()">Slag</footer>
-
+    <footer class="row">
+      <div class="col-6">
+        <footer class="btn btn-warning" onclick="melee()">Melee</footer>
+        <footer class="btn btn-warning" onclick="shoot()">Shoot</footer>
+        <footer class="btn btn-warning" onclick="slag()">Slag</footer>
+      </div>
+      <div class="col-6">
+        <button class="btn btn-info" onclick="respawn()">A New U</button>
+      </div>
+    </footer>
   </div>
 
 

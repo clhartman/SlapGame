@@ -3,7 +3,7 @@ let jack = {
   health: 100,
   hits: 0,
   multiplier: 1,
-  items: []
+  defense: []
 }
 
 /*let guardian = {
@@ -46,21 +46,95 @@ function slag() {
   update()
 }
 
-function giveguardian() {
-  jack.defense.push(guardian)
+function goGuardian() {
+  let guardBuff = (jack.health + 50)
+  if (guardBuff >= 100) {
+    let bonusBuff = (guardBuff - 100)
+    let cappedBuff = (guardBuff - bonusBuff)
+    jack.health = cappedBuff
+  }
+  else jack.health += 50
+  update()
+  byeGuardian()
+}
+
+//Guardian button only works one time per round, and is then disabled. 
+function byeGuardian() {
+  document.getElementById("endGuardian").disabled = true
+}
+
+function goShield() {
+  //jack.defense.push(items.shield)
+  let shieldMod = items.shield.modifier
+  if melee() {
+    jack.health +=
+  }
+  else if shoot() {
+    jack.health += 2
+  }
+  jackMods()
+}
+/*
+function goDoppelganger() {
+  let gangMod = jack.defense.push(items.doppelganger)
+  jackMods()
+}
+
+function jackMods() {
+  jack.health -= jack.defense.modifier
+}
+*/
+
+/*
+function giveGuardian() {
+  jack.defense.push(defense.guardian)
   addMods();
 }
 
-function addMods() {
-  //determine which modifiers are currently active and then total them and return the total so Jack's character can be aided
-  let modsTotal = jack.defense.length
-  for (let i = 0; i < modsTotal; i + jack.defense().modifier)
-    return (modsTotal)
+function giveShield() {
+  jack.defense.push(defense.shield)
+  addMods()
 }
+ 
+function giveDoppelganger() {
+  jack.defense.push(defense.doppelganger)
+  addMods()
+}
+
+function groupBy(defense, modifier) {
+  return defense.reduce(function (acc, obj) {
+    var key = obj[modifier];
+    if (!acc[key]) {
+      acc[key] = [];
+    }
+    acc[key].push(obj);
+    return acc;
+  }) { });
+}
+
+function addMods() {
+  //determine which items are in the defense array, and then pull the value of each item's modifier and sum
+  let modsTotal = jack.defense.map(d => ({
+    
+  }))
+ 
+  /*determine which modifiers are currently active and then total them and return the total so Jack's character can be aided
+  let modsTotal = jack.defense[].modifier
+  for (let i = 0; i < modsTotal; i + jack.defense[].modifier)
+  return (modsTotal)
+}*/
 
 function update() {
   document.getElementById("health").innerText = jack.health
   document.getElementById("hit-status").innerText = jack.hits
+}
+
+function respawn() {
+  jack.health = 100
+  document.getElementById("health").innerText = jack.health
+  jack.hits = 0
+  document.getElementById("hit-status").innerText = jack.hits
+  document.getElementById("endGuardian").disabled = false
 }
 
 update()
